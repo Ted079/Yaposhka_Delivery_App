@@ -1,9 +1,18 @@
 import React from "react";
 import styles from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../store/cartSlice";
 
 const MealItem = ({ name, description, price, id }) => {
-  const fixedPrice = `$${price.toFixed(2)}`;
+const dispatch = useDispatch();  
+
+const fixedPrice = `$${price.toFixed(2)}`;
+
+const addToCartHandler = () => {
+  dispatch(addItem({id, name, fixedPrice}));
+};
+
   return (
     <li className={styles.meal}>
       <div>
@@ -12,7 +21,7 @@ const MealItem = ({ name, description, price, id }) => {
         <p className={styles.price}>{fixedPrice}</p>
       </div>
       <div>
-        <MealItemForm id={id}/>
+        <MealItemForm addItemHandler={addToCartHandler} id={id}/>
       </div>
     </li>
   );

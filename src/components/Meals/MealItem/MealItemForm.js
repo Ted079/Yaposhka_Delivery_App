@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "./MealItemFrom.module.css"
 import Input from '../../UI/Input';
 
-const MealItemForm = ({id}) => {
+const MealItemForm = ({id, addItemHandler}) => {
   return (
     <form className={styles.form}>
       <Input label="Quantity" input={{
@@ -13,7 +13,7 @@ const MealItemForm = ({id}) => {
         max:"10",
         defaultValue:"1"
       }}/>
-      <button>Add</button>
+      <button type='button' onClick={addItemHandler}>Add</button>
     </form>
   )
 }

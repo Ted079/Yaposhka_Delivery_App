@@ -3,6 +3,7 @@ import "./App.css";
 import Cart from "./components/Cart/Cart";
 import Header from "./components/Layout/Header";
 import Meals from "./components/Meals/Meals";
+import CartContextProvider from "./store/CartContextProvider";
 
 function App() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -16,13 +17,13 @@ function App() {
   };
 
   return (
-    <Fragment>
-      {cartIsVisible && <Cart onCloseCart={closeCartHandler}/>}
-      <Header onShowCart={showCartHandler}/>
+    <CartContextProvider>
+      {cartIsVisible && <Cart onCloseCart={closeCartHandler} />}
+      <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
-    </Fragment>
+    </CartContextProvider>
   );
 }
 
