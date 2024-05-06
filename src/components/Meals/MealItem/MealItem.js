@@ -1,17 +1,26 @@
 import React from "react";
 import styles from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../../store/cartSlice";
+import { useContext } from "react";
+import CartContext from "../../../store/cart-context";
+
+
 
 const MealItem = ({ name, description, price, id }) => {
-const dispatch = useDispatch();  
+const cartContext = useContext(CartContext);
 
 const fixedPrice = `$${price.toFixed(2)}`;
 
-const addToCartHandler = () => {
-  dispatch(addItem({id, name, fixedPrice}));
-};
+const addToCartHandler = (amount) => {
+  cartContext.addItem({
+    id: id,
+    description: description,
+    name: name,
+    price: price,
+    amount: amount,
+  });
+  
+}
 
   return (
     <li className={styles.meal}>
@@ -21,7 +30,7 @@ const addToCartHandler = () => {
         <p className={styles.price}>{fixedPrice}</p>
       </div>
       <div>
-        <MealItemForm addItemHandler={addToCartHandler} id={id}/>
+        <MealItemForm id={id} onAddToCart={addToCartHandler}/>
       </div>
     </li>
   );
