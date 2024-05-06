@@ -29,7 +29,7 @@ const CartReducer = (state, action) => {
       updatedItems = [...state.cartItems];
       updatedItems[existingCartItemIndex] = updatedItem;
 
-      // Если существующий товар уже присутствует в корзине (existingCartItem не равен undefined), то его количество обновляется. Мы создаем копию существующего товара (existingCartItem) и увеличиваем его количество на количество новых единиц товара (action.item.amount). Затем мы обновляем список товаров в корзине (updatedItems), заменяя существующий товар на обновленный товар по его индексу.
+     
     } else {
       updatedItem = {
         ...action.item,
